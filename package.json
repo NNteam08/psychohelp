@@ -1,0 +1,9 @@
+{
+  "name": "psychopodderzhka-ftc",
+  "version": "1.0.0",
+  "description": "Сайт психологической поддержки для участников FTC",
+  "scripts": {
+    "start": "node server.js",
+    "server": "node server.js"
+  }
+}

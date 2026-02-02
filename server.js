@@ -7,7 +7,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Загрузка .env
 const envPaths = [
@@ -203,7 +203,9 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n🌸 Психоподдержка FTC: http://localhost:${PORT}\n`);
-  if (!OPENAI_API_KEY) {
-    console.log('⚠️  OPENAI_API_KEY не найден. Создайте .env с ключом для работы анализа эмоций.\n');
+  if (OPENAI_API_KEY) {
+    console.log(`✅ OPENAI_API_KEY обнаружен (${OPENAI_API_KEY.slice(0,8)}...)\n`);
+  } else {
+    console.log('⚠️  OPENAI_API_KEY не найден. Добавьте переменную окружения.\n');
   }
 });

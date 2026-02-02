@@ -81,7 +81,13 @@ async function analyzeEmotion() {
       body: JSON.stringify({ text })
     });
 
-    const data = await res.json();
+    const text2 = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text2);
+    } catch {
+      throw new Error(`Сервер вернул некорректный ответ: ${text2.slice(0, 100)}`);
+    }
 
     if (!res.ok) {
       throw new Error(data.error || `Ошибка ${res.status}`);
@@ -266,7 +272,13 @@ async function analyzeVideo() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ images })
     });
-    const data = await res.json();
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error(`Сервер вернул некорректный ответ: ${text.slice(0, 100)}`);
+    }
 
     if (!res.ok) throw new Error(data.error || `Ошибка ${res.status}`);
 

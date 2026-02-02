@@ -75,7 +75,7 @@ async function analyzeEmotion() {
   resultArea.classList.add('hidden');
 
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch(API_ANALYZE, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text })
